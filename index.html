@@ -9,17 +9,18 @@
 </head>
 <body onload="main()">
 
-    <div id="canvas_box">
+    <div id="canvas_box" width="640">
 	
 	    <img 	id="loading" src="res/loading.gif">
 		
 		<img 	id="back_img" 	width="640" height="800" src="res/back/back_MF003_blur.jpg" >
 		<canvas id="glcanvas" 	width="640" height="800" ></canvas>
-
+		
 		<div id="dummy_box"></div>
+		<input type="button" value="SaveImage" onclick="capchImage()">
 	</div>
-
-
+     <div id="pngHolder" width="640">
+	</div>
 </div>
 
 <!-- ###### SCRIPT ###### -->
@@ -40,6 +41,22 @@ window.PROMO_MODEL_SETTING = {
 <script src="lib/sample_wrapper.js"></script>
 
 <script src="lib/promo1.js"></script>
+
+<script>
+    function capchImage(){
+	    canvas = document.getElementById("glcanvas");
+		document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
+	   
+	}
+
+
+	function convertCanvasToImage(canvas) {
+				var image = new Image();
+				image.src = canvas.toDataURL("image/png");
+				return image;
+			}
+
+</script>
 
 </body>
 </html>
