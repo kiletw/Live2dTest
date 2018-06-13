@@ -43,13 +43,31 @@ window.PROMO_MODEL_SETTING = {
 <script src="lib/promo1.js"></script>
 
 <script>
+    var count = 0;
+
     function capchImage(){
-	    canvas = document.getElementById("glcanvas");
+	   var list = document.getElementById("pngHolder");
+
+		while (list.hasChildNodes()) {   
+			list.removeChild(list.firstChild);
+		}
+	
+		count = 0;
+	   	canvas = document.getElementById("glcanvas");
 		document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
-	   
+	   setTimeout(capchImage2,33.33);
 	}
-
-
+     
+  function capchImage2(){
+	canvas = document.getElementById("glcanvas");
+	document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
+	count++;
+	if(count < 90){
+		setTimeout(capchImage2,33.33);
+	}
+  }
+	
+	
 	function convertCanvasToImage(canvas) {
 				var image = new Image();
 				image.src = canvas.toDataURL("image/png");
