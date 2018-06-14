@@ -41,47 +41,36 @@ window.PROMO_MODEL_SETTING = {
 <script src="lib/sample_wrapper.js"></script>
 
 <script src="lib/promo1.js"></script>
-<script type="text/javascript" src="lib/LZWEncoder.js"></script>
-<script type="text/javascript" src="lib/NeuQuant.js"></script>
-<script type="text/javascript" src="lib/GIFEncoder.js"></script>
-<script type="text/javascript" src="lib/b64.js"></script>
+
 <script>
     var count = 0;
-    var encoder = new GIFEncoder();
+    var canvas;
     function capchImage(){
-	    encoder = new GIFEncoder();
+	   var list = document.getElementById("pngHolder");
+
+		while (list.hasChildNodes()) {   
+			list.removeChild(list.firstChild);
+		}
 	
 		count = 0;
 	   	canvas = document.getElementById("glcanvas");
-		var context = canvas.getContext('2d');
-		
-		 encoder.setRepeat(0);
-		 encoder.setDelay(33.33);
-		 encoder.start();
-		 	 encoder.addFrame(context);
-		
-		
+		document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
 	   setTimeout(capchImage2,33.33);
 	}
      
   function capchImage2(){
-	 encoder.addFrame(context);
+	canvas = document.getElementById("glcanvas");
+	document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
 	count++;
 	if(count < 90){
 		setTimeout(capchImage2,33.33);
-	}
-	else{
-	document.getElementById("pngHolder").appendChild(convertCanvasToImage(canvas));
 	}
   }
 	
 	
 	function convertCanvasToImage(canvas) {
-				encoder.finish();
 				var image = new Image();
-				 var binary_gif = encoder.stream().getData();
-				var data_url = 'data:image/gif;base64,'+encode64(binary_gif);
-				image.src = data_url;
+				image.src = canvas.toDataURL("image/png");
 				return image;
 			}
 
