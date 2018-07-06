@@ -2,11 +2,11 @@
 function FindProxyForURL(url, host)
 {
 	if (shExpMatch(url, "https://pan.baidu.com/*"))
-		return "PROXY 58.20.41.172:1080" ;
+		return "PROXY 150.95.147.66:3128" ;
 	if (shExpMatch(url, "http://play.baidu.com/*"))
-		return "PROXY 58.20.41.172:1080" ;
+		return "PROXY 150.95.147.66:3128" ;
 	if (shExpMatch(url, "http://fm.baidu.com/*"))
-		return "PROXY 58.20.41.172:1080" ;
+		return "PROXY 150.95.147.66:3128" ;
 	return "DIRECT";
   }
 
