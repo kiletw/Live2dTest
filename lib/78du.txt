@@ -1,0 +1,13 @@
+/*======Baidu - China PROXY -2018.05.24     PTTPU  ======*/
+function FindProxyForURL(url, host)
+{
+	if (shExpMatch(url, "https://pan.baidu.com/*"))
+		return "PROXY 58.20.41.172:1080" ;
+	if (shExpMatch(url, "http://play.baidu.com/*"))
+		return "PROXY 58.20.41.172:1080" ;
+	if (shExpMatch(url, "http://fm.baidu.com/*"))
+		return "PROXY 58.20.41.172:1080" ;
+	return "DIRECT";
+  }
+
+//proxy website:  http://www.xroxy.com/proxylist.htm
